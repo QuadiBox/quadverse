@@ -197,7 +197,7 @@ const Sect1 = () => {
                                         <motion.h1 variants={slideupExit}>Planet Query</motion.h1>
                                     </div>
                                     <div style={{overflow: "hidden"}}>
-                                        <motion.p variants={slideupExit}>Get little details including planet's mass, host star's mass, host star temperature e.t.c. about any planet you search for. Search can also be made with provided filter options/query parameters.</motion.p>
+                                        <motion.p variants={slideupExit}>Get little details including planet&apos;s mass, host star&apos;s mass, host star temperature e.t.c. about any planet you search for. Search can also be made with provided filter options/query parameters.</motion.p>
                                     </div>
                                     <motion.div variants={smallswipe} style={{width: "max-content"}}>
                                         <Link href={"/search/planet_query"}>Get Started</Link>

@@ -250,8 +250,8 @@ const Sect5 = () => {
                             msg.text !== "" && (
                                 <motion.div variants={cntnVar} initial="init" animate="finale" exit="exit">
                                     {
-                                        msg.text.split("").map((elem) => (
-                                            <motion.span variants={childVar} style={{color: `${msg.color}`}}>{elem}</motion.span>
+                                        msg.text.split("").map((elem, idx) => (
+                                            <motion.span key={`message_text_${idx}`} variants={childVar} style={{color: `${msg.color}`}}>{elem}</motion.span>
                                         ))
                                     }
                                 </motion.div>
