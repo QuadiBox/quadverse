@@ -13,7 +13,8 @@ const ThemeProvider = ({ children }) => {
         head: null,
         content: "/4_vesta.jpg",
         content_description: "This is an artists concept of Cassini during the Saturn Orbit Insertion (SOI) maneuver, just after the main engine has begun firing. Image source: NASA/JPL"
-    },)
+    },);
+    const [cursorTrailerMonitor, setCursorTrailerMonitor] = useState(true);
 
     return (
         <themeContext.Provider 
@@ -29,7 +30,9 @@ const ThemeProvider = ({ children }) => {
                 showImageViewer,
                 setShowImageViewer,
                 activeImageViewerData, 
-                setActiveImageViwerData
+                setActiveImageViwerData,
+                cursorTrailerMonitor,
+                setCursorTrailerMonitor
             }}
         >
             {children}

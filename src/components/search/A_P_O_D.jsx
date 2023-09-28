@@ -3,7 +3,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import Loader from "../Loader";
 
-const Sect1 = ({ apodDisplay, setApodDisplay, LSData , setLSData }) => {
+const Sect1 = ({ apodDisplay, setApodDisplay, LSData , setLSData, setShowImageViewer, setActiveImageViwerData }) => {
 
     const Error = {
         title: "Error !!!",
@@ -99,6 +99,11 @@ const Sect1 = ({ apodDisplay, setApodDisplay, LSData , setLSData }) => {
             setApodDisplay(utilObj);
         }
     };
+
+    const handleImageViewer = (vlad) => {
+        setActiveImageViwerData(vlad);
+        setShowImageViewer(prev => !prev);
+    }
 
 
 
@@ -366,6 +371,7 @@ const Sect1 = ({ apodDisplay, setApodDisplay, LSData , setLSData }) => {
                             <div
                                 className="rightDetails"
                                 style={{ backgroundImage: `url(${apodDisplay?.hdurl})` }}
+                                onClick={() => {handleImageViewer(apodDisplay)}}
                             ></div>
                             {
                                 apodDisplay?.title !== "Error !!!" && (

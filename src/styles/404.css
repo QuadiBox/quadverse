@@ -101,6 +101,8 @@
     background-image: linear-gradient(to bottom, var(--bg1-opac02), var(--bg1-opac02), rgba(19, 0, 31, 0.1)), url(/404_bg1.jpg);
     isolation: isolate;
     overflow: hidden;
+
+    animation: staticky 5s forwards;
 }
 
 .pageNotfound > img{
@@ -141,6 +143,15 @@
     font-weight: 600;
     color: var(--primary-clr);
     line-height: 1.4;
+}
+
+@keyframes staticky {
+    0%{
+        filter: url(#noise);
+    } 
+    100%{
+        filter: none;
+    }
 }
 
 .leftElems > h1 span {

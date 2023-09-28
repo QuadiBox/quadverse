@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 const PageNotFound = () => {
   const [millisec, setMilliSec] = useState(10);
-  const [sec, setSec] = useState(6);
+  const [sec, setSec] = useState(20);
   const router = useRouter();
 
   useEffect(() => {
@@ -30,6 +30,17 @@ const PageNotFound = () => {
 
   return (
     <section className='pageNotfound'>
+      <svg style={{display: "none"}}>
+          <defs>
+          <filter id="noise">
+              <feTurbulence baseFrequency="0.0,0.0" seed="0" type='fractalNoise' result='static'>
+                  <animate attributeName='seed' values='10;300' dur="5000ms" repeatCount="indefinite"/>
+                  <animate attributeName='baseFrequency' values='0.0,0.0;0.8,0.77' dur="4000ms" repeatCount="indefinite"/>
+              </feTurbulence>
+              <feDisplacementMap in='SourceGraphic' in2="static" scale="20"/>
+          </filter>
+          </defs>
+      </svg>
       <img className='bg_web' src="/404_bg.webp" alt="" />
       <div className="pnf_overlay">
         <div className="leftElems">

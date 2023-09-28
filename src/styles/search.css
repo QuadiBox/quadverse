@@ -93,180 +93,238 @@
   --font-jost: "Jost", sans-serif;
 }
 
-.NasaId-sect1 {
-
-}
 
 .sect1-search {
   width: 100%;
   height: 100vh;
-  overflow: hidden;
+  overflow: auto;
   background-image: linear-gradient(
       transparent,
       var(--bg2-opac02),
       var(--bg1-opac02),
       var(--bg1-opac05)
-    ),
-    url(/bgImg3.jpg);
-  background-size: cover;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  display: grid;
-  grid-template-rows: 1fr max-content;
-  animation: vidPanning 60s linear infinite 0.8s;
-  animation-play-state: paused;
+    );
 }
 
-@keyframes vidPanning{
-  0%{
-      background-position: 20% 20%;
-  }
-
-  60%{
-    background-position: 32% 30%;
-  }
-
-  60.0001%{
-      background-position: 20% 80%;
-  }
-
-  80%{
-      background-position: 25% 60%;
-  }
-
-  80.0001%{
-      background-position: 90% 80%;
-  }
-
-  100%{
-      background-position: 87% 60%;
-  }
-
-}
-
-.theSearch {
+.seearchCarousel {
   width: 100%;
+  height: 100dvh;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 
-.theSearch h1 {
-  font-size: 6.2em;
+.seearchCarousel > button{
+  width: 130px;
+  aspect-ratio: 1;
+  border: 1px dashed var(--text-clr2);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #ede6ef08;
+  font-size: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: #f9d9f9cd;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(6px);
+
+  transition: scale 0.25s ease-in-out, background-color 0.45s ease;
+}
+
+.seearchCarousel > button:hover{
+  scale: 1.3;
+  background-color: #ede6ef24;
+}
+
+.seearchCarousel > button.right{
+  right: 0px;
+  border-right-color: #fdf5ff4f;
+  border-top-color: #fdf5ff9f;
+  border-bottom-color: #fdf5ff9f;
+  transform-origin: center right;
+}
+.seearchCarousel > button.left{
+  left: 0px;
+  border-left-color: #fdf5ff4f;
+  border-top-color: #fdf5ff9f;
+  border-bottom-color: #fdf5ff9f;
+  transform-origin: center left;
+
+}
+
+.apodUnit {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  isolation: isolate;
+}
+
+.apodUnit > img:nth-of-type(1){
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  animation: statik 3s forwards;
+
+}
+
+@keyframes statik {
+  0%{
+      filter: url(#noise);
+  } 
+  100%{
+      filter: none;
+  }
+}
+.overlaySectUnit > img{
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(0%);
+  width: 90%;
+  z-index: -1;
+  filter: grayscale(0.4);
+  transform-origin: right bottom;
+
+  transition: filter 0.3s ease-in-out;
+
+  animation: imageswipe 0.6s ease forwards, statik 4s forwards;
+}
+
+@keyframes imageswipe {
+  0%{
+    transform: translateX(-20%);
+    opacity: 0.2;
+    scale: 0.9;
+  }
+  100%{
+    transform: translateX(-50%);
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.starQuest .overlaySectUnit > img {
+  width: 70%;
+}
+
+.overlaySectUnit > img:hover{
+  filter: grayscale(0);
+}
+
+.overlaySectUnit {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #24182251;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  justify-content: center;
+  padding-inline: 25%;
+  position: relative;
+  isolation: isolate;
+
+}
+
+.overlaySectUnit  h1{
+  --text-shadow-clr: rgba(213, 121, 59, 0.236);
+
   color: var(--text-clr2);
   font-family: var(--font-unica);
   font-weight: 400;
+  font-size: 3.6em;
+  text-shadow:  2px 2px 6px var(--text-shadow-clr),  -2px -2px 6px var(--text-shadow-clr);
+  line-height: 0.8;
 }
 
-.searchLinks {
-  width: 100%;
-  background-color: var(--bg1-opac02);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
-  border-top: 1px solid var(--borderline-clr);
-  padding-inline: var(--gen-padding);
-  display: flex;
-  gap: 15px;
-  justify-content: space-between;
-  padding-block: 1.2em;
-  overflow: hidden;
+.planetQuery .overlaySectUnit  h1{
+  --text-shadow-clr: rgba(213, 77, 59, 0.236);
+}
+.starQuest .overlaySectUnit  h1{
+  --text-shadow-clr: rgba(121, 221, 45, 0.236);
+}
+.imgVidLibrary .overlaySectUnit  h1{
+  --text-shadow-clr: rgba(45, 221, 171, 0.236);
 }
 
-
-.searchOptCntn {
-  height: 100%;
-  width: max-content;
-}
-
-.searchlinkUnit {
-  background-color: var(--bg1-opac09);
-  backdrop-filter: blur(17px);
-  -webkit-backdrop-filter: blur(17px);
-  clip-path: var(--clip-type1);
-  display: grid;
-  place-content: center;
-  padding-inline: 14px;
-  padding-block: 13px;
-  isolation: isolate;
-  position: relative;
-  border-radius: 5px;
-  overflow: hidden;
-  height: 100%;
-}
-
-.searchlinkUnit::after {
-  content: "";
-  width: 150%;
-  height: 150%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: -1;
-  border-radius: 50%;
-  transition: all 0.45s ease;
-  background: radial-gradient(
-      var(--bg1-opac02) 15%,
-      transparent 16%,
-      transparent 49%,
-      var(--bg1-opac02) 50%,
-      transparent 51%
-    ),
-    radial-gradient(
-      circle at top left,
-      var(--bg1-opac02) 10%,
-      transparent 10%,
-      transparent 39%,
-      var(--bg1-opac02) 40%,
-      transparent 41%
-    ),
-    radial-gradient(
-      circle at top right,
-      var(--bg1-opac02) 10%,
-      transparent 10%,
-      transparent 39%,
-      var(--bg1-opac02) 40%,
-      transparent 41%
-    ),
-    radial-gradient(
-      circle at bottom left,
-      var(--bg1-opac02) 10%,
-      transparent 10%,
-      transparent 39%,
-      var(--bg1-opac02) 40%,
-      transparent 41%
-    ),
-    radial-gradient(
-      circle at bottom right,
-      var(--bg1-opac02) 10%,
-      transparent 10%,
-      transparent 39%,
-      var(--bg1-opac02) 40%,
-      transparent 41%
-    );
-  background-size: 1.6em 1.6em;
-  background-color: #a706f11e;
-}
-
-
-.searchlinkUnit:hover::after {
-  top: -22%;
-  left: -22%;
-  background-color: #a50eeb5c;
-}
-
-.searchlinkUnit h2 {
-  font-size: 1.3em;
+.overlaySectUnit  p {
+  font-size: 1.2em;
+  font-weight: 400;
   color: var(--text-clr2);
-  font-weight: 300;
-  font-family: var(--font-unica);
+  font-family: 'Handjet', cursive;
+  width: clamp(350px, 40%, 40%);
 }
 
-.searchlinkUnit p {
-  font-size: 0.95em;
-  color: var(--text-clr1);
+.overlaySectUnit a{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 25px;
+  border: 1px dashed var(--text-clr2);
+  outline: none;
+  font-size: 1.05em;
+  width: max-content;
+  background-color: transparent;
+  cursor: pointer;
+  font-family: 'Handjet', cursive;
   font-weight: 300;
-  margin-top: 5px;
+  backdrop-filter: blur(6px);
+
+  transform: background-color 0.3s ease, backdrop-filter 0.3s ease;
 }
+
+.overlaySectUnit a:hover{
+  background-color: var(--bg1-opac02);
+  backdrop-filter: blur(8px);
+}
+
+.navigator-monitor {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 18px;
+  border-radius: 30px;
+  border: 1px dashed var(--text-clr2);
+  display: grid;
+  gap: 5px;
+  padding: 5px;
+  grid-template-columns: 1fr 2fr 1fr 1fr;
+
+  transition: grid-template-columns 0.35s ease;
+}
+
+.navigator-monitor > span {
+  height: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.navigator-monitor > span:nth-child(1) {
+  background-color: #ffe6d4;
+}
+.navigator-monitor > span:nth-child(3) {
+  background-color: #ffdbd5;
+}
+.navigator-monitor > span:nth-child(4) {
+  background-color: rgb(225, 252, 204);
+}
+.navigator-monitor > span:nth-child(2) {
+  background-color: rgb(180, 249, 230);
+}
+
+
 
 .apodBasicPage {
   width: 100%;
@@ -1809,10 +1867,42 @@
     height: 20px;
     line-height: 1;
   }
+
+  .apodUnit > img:nth-child(1) {
+    filter: grayscale(0);
+  }
+
+  .overlaySectUnit {
+    padding-inline: 10%;
+    align-items: center;
+  }
+
+  .overlaySectUnit h1{
+    text-align: center;
+  }
+
+  .seearchCarousel > button {
+    width: 50px;
+    font-size: 19px;
+    border-radius: 0px;
+  }
+
+  .seearchCarousel > button:hover{
+    scale: 1;
+  }
+
+  .overlaySectUnit  p {
+    font-size: 1.2em;
+    font-weight: 400;
+    color: var(--text-clr2);
+    font-family: 'Handjet', cursive;
+    width: 100%;
+    text-align: center;
+  }
   
 }
 
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 465px) {
   .sect1-search {
     grid-template-rows: 1fr 60%;
     animation-play-state: paused;
@@ -1822,6 +1912,27 @@
     flex-wrap: wrap;
     min-height: 380px;
   }
+
+  .overlaySectUnit {
+    padding-inline: 11.1%;
+  }
+
+  .seearchCarousel > button {
+    width: 40px;
+    font-size: 15px;
+  }
+
+  .overlaySectUnit > img{
+    position: absolute;
+    width: 140%;
+    z-index: -1;
+    filter: grayscale(0);
+  }
+
+  .starQuest .overlaySectUnit > img {
+    width: 100%;
+  }
+
 }
 
 @media screen and (max-width: 290px) {

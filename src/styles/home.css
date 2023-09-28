@@ -108,6 +108,8 @@
     transform-origin: center;
     position: relative;
     z-index: 250;
+
+    animation: staticky 4s forwards;
 }
 
 .theNavbar{
@@ -2060,6 +2062,7 @@
 }
 
 .contactForm{
+    position: relative;
     height: max-content;
     padding-block: 25px;
     padding-inline: 4%;
@@ -2069,6 +2072,20 @@
     gap: 18px;
     border-radius: 10px;
     clip-path: polygon(0% 0%, 86% 0%, 91% 3%, 100% 3%, 100% 97%, 91% 97%, 86% 100%, 0% 100%, 0% 65%, 1% 60%, 1% 40%, 0% 35%, 0% 0%);
+}
+
+.contactForm div:last-child {
+    position: absolute;
+    right: 20px;
+    overflow: hidden;
+    bottom: 4%;
+    font-size: 2em;
+    display: flex;
+}
+
+.contactForm div:last-child > span{
+    font-family: var(--font-unica);
+    display: flex;
 }
 
 .mailInputCntn{

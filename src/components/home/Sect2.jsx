@@ -35,7 +35,7 @@ const Sect2 = () => {
             clearInterval(inetrvals)
         }
 
-      iterations += 1/3;
+      iterations += 1/2;
     }, 30);
 
   };

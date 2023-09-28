@@ -223,6 +223,17 @@ export default function Home({ apod }) {
   return (
     <>
       <AnimatePresence mode="wait">
+          <svg style={{display: "none"}}>
+                <defs>
+                <filter id="noise">
+                    <feTurbulence baseFrequency="0.09,0.117" numOctaves="1" seed="0" type="turbulence" result='static'>
+                        <animate attributeName='seed' values='0;210' dur="4000ms" repeatCount="indefinite"/>
+                        <animate attributeName='baseFrequency' values='0.09,0.117;0.0,0.0' dur="4000ms" repeatCount="indefinite"/>
+                    </feTurbulence>
+                    <feDisplacementMap in='SourceGraphic' in2="static" scale="20"/>
+                </filter>
+                </defs>
+            </svg>
         {showAbsMain && (
           <motion.div initial="init" animate="finale" exit="exit" variants={parentVar} ref={backgroundRef} className="homeLoaderMain" onMouseMove={handleBackgroundShift} onScroll={landingPageCloser}>
             

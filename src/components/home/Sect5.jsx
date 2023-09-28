@@ -1,14 +1,20 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import emailjs from "@emailjs/browser";
 
 const Sect5 = () => {
     const [text, setText] = useState("☉E⚷♄φI♀⚶ ♁♅♆V♃⚸☾🜍");
     const loadtext = "FeedBack Form"
     const letters = "A}\sJ:X|#f*Gkl,;_!C/<sdR";
     const sectRef = useRef(null);
+    const [msg, setMsg] = useState({
+        text: "",
+        color: "#a706f1",
+    });
 
     const inView = useInView(sectRef, { once: true, amount: 0.35 });
     const inView2 = useInView(sectRef, { once: true, amount: 0.4 });
+    const form = useRef(null);
 
     const handleWordEffect = () => {
         let iterations = 0;
@@ -28,10 +34,22 @@ const Sect5 = () => {
                 clearInterval(inetrvals)
             }
     
-          iterations += 1/3;
+          iterations += 1/2;
         }, 30);
     
     };
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+          setMsg({
+            text: "",
+            color: "#a706f1",
+          })
+        }, 4000);
+    
+        return () => {
+          clearTimeout(timeoutId);
+        };
+      }, [msg]);
 
     useEffect(() => {
         if ( inView ) {
@@ -39,6 +57,36 @@ const Sect5 = () => {
         }
 
     }, [inView2]);
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+  
+        emailjs
+        .sendForm(
+          "service_sguscc2",
+          "template_f9p75lg",
+          form.current,
+          "Zp0CfEWsESXaa7Ury"
+        )
+        .then(
+          (result) => {
+          console.log(result.text);
+          setMsg({
+              text: "Sent!!!",
+              color: "#a706f1",
+          });
+          form.current.reset();
+          },
+          (error) => {
+          console.log(error.text);
+          setMsg({
+              text: "Failed!!!",
+              color: "#ff5882",
+          });
+          form.current.reset();
+          }
+        ); 
+      };
 
     //Animation Variables
     const parentVar = {
@@ -110,6 +158,48 @@ const Sect5 = () => {
         }
     }
 
+    const cntnVar = {
+        init: {
+            opacity: 0.9
+        }, 
+        finale: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.08,
+                duration: 0.01
+            }
+        }, exit: {
+            opacity: 0.9,
+            transition: {
+                staggerChildren: 0.08,
+                duration: 0.01
+            }
+        }
+    }
+
+    const childVar = {
+        init: {
+            y: "100%",
+            opacity: 0
+        }, 
+        finale: {
+            y: 0,
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.08,
+                duration: 0.01
+            }
+        },
+        exit: {
+            y: "100%",
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.08,
+                duration: 0.01
+            }
+        }
+    }
+
 
     
 
@@ -122,11 +212,12 @@ const Sect5 = () => {
             <motion.p variants={childVarSlide} className="instruction">...we&apos;ll love to know what you think about this website</motion.p>
 
             <motion.div variants={parentVariant} className="contactCntnHome">
-                <motion.form variants={childFullSlideLeft} className="contactForm">
+                <motion.form ref={form} variants={childFullSlideLeft} className="contactForm" onSubmit={sendEmail}>
                     <motion.div variants={childVarSlide} className="mailInputCntn">
                         <input 
                             type="text" 
                             className="NameInput"
+                            name="user_name"
                             required
                             autoComplete="true"
                             spellCheck="false"
@@ -137,8 +228,9 @@ const Sect5 = () => {
 
                     <motion.div variants={childVarSlide} className="mailInputCntn">
                         <input 
-                            type="text" 
+                            type="email" 
                             className="NameInput"
+                            name="user_email"
                             required
                             autoComplete="true"
                             spellCheck="false"
@@ -148,13 +240,26 @@ const Sect5 = () => {
                     </motion.div>
 
                     <motion.div variants={childVarSlide} className="textareaCntn">
-                        <textarea name="textarea" placeholder='What do you think?'></textarea>
+                        <textarea name="message" placeholder='What do you think?'></textarea>
                         <div className="animatedInputBorder"></div>
                     </motion.div>
 
                     <motion.button variants={childVarUp} type="submit" className="submitFeedbackBtn afterHover">Send</motion.button>
+                    <AnimatePresence>
+                        {
+                            msg.text !== "" && (
+                                <motion.div variants={cntnVar} initial="init" animate="finale" exit="exit">
+                                    {
+                                        msg.text.split("").map((elem) => (
+                                            <motion.span variants={childVar} style={{color: `${msg.color}`}}>{elem}</motion.span>
+                                        ))
+                                    }
+                                </motion.div>
+                            )
+                        }
+                    </AnimatePresence>
                 </motion.form>
-
+        
                 <motion.div variants={childFullSlideRight} className="complementaryCard">
                     <div className="filterCard"></div>
                     <h3>&quot; The sky is not the limit. There are footprints on the Moon and beyond. &quot;</h3>

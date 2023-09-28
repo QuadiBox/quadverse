@@ -26,7 +26,7 @@ const defaultApod = {
 const HomePage = ({ apod }) => {
     const [showExit, setShowExit] = useState(false);
     const ctx = useContext(themeContext);
-    const { setShowOtherPageLinks } = ctx;
+    const { setShowOtherPageLinks, setShowImageViewer, setActiveImageViwerData, showImageViewer, activeImageViewerData } = ctx;
     const router = useRouter();
 
     useEffect(() => {
@@ -66,7 +66,7 @@ const HomePage = ({ apod }) => {
     const shareContent = {
         title: 'Check out this amazing astronomy picture!',
         text: 'Astronomy Picture of the Day',
-        url: 'https://quadverse.vercel.app',
+        url: 'https://quadverse.vercel.app/apod',
     };
 
     const handleShare = () => {
@@ -79,6 +79,11 @@ const HomePage = ({ apod }) => {
             console.log('Web Share API not supported on this browser');
         }
     };
+
+    const handleImageViewer = (vlad) => {
+        setActiveImageViwerData(vlad);
+        setShowImageViewer(prev => !prev);
+    }
 
 
     //Animation Variables
@@ -155,6 +160,75 @@ const HomePage = ({ apod }) => {
         }
     }
 
+    const parentVarSpec = {
+        init: {
+            y: 10,
+            opacity: 0.95
+        }, 
+        finale: {
+            y: 0,
+            opacity: 1,
+            transition: {
+                ease: "easeIn",
+                duration: 0.25,
+            }
+        },
+        exit: {
+            y: "30%",
+            opacity: 0.1,
+            transition: {
+                ease: "easeOut",
+                duration: 0.23,
+            }
+        },
+    }
+
+    const scaleUpSpec = {
+        init: {
+            scale: 0.9,
+            opacity: 0.85
+        }, 
+        finale: {
+            scale: 1,
+            opacity: 1,
+            transition: {
+                ease: "easeInOut",
+                duration: 0.25,
+            }
+        },
+        exit: {
+            scale: "30%",
+            opacity: 0.5,
+            transition: {
+                ease: "easeOut",
+                duration: 0.1,
+            }
+        },
+    }
+    const swipeSpec = {
+        init: {
+            x: 10,
+            opacity: 0
+        }, 
+        finale: {
+            x: 0,
+            opacity: 1,
+            transition: {
+                type: "spring",
+                damping: 30,
+                stiffness: 200,
+            }
+        },
+        exit: {
+            x: 10,
+            opacity: 0,
+            transition: {
+                ease: "easeOut",
+                duration: 0.1,
+            }
+        },
+    }
+
     return (
         <div ref={backShift} className="theHomePage" onClick={(e) => {handleToggles( e, setShowOtherPageLinks)}} onMouseMove={handleBackgroundShift}>
             <Navbar/>
@@ -163,7 +237,7 @@ const HomePage = ({ apod }) => {
                 <motion.div variants={parentVar} initial="init" animate="finale" className="apod">
                     <div className="banner"></div>
                     
-                    <div style={{overflow: "hidden"}}><motion.h1 variants={slideUp}>Astronomy Picture of the Day</motion.h1></div>
+                    <div style={{overflow: "hidden"}}><motion.h1 variants={slideUp}>Astronomy {apod?.media_type === "image"? "Picture" : "Video"} of the Day</motion.h1></div>
                     
                     {apod?.title !== undefined ? (
                         <motion.div variants={scaleUp} tabIndex="1" className="apodDisplayer">
@@ -187,7 +261,7 @@ const HomePage = ({ apod }) => {
                                             <p>Date: <span>{apod?.date}</span></p>
                                             <p>Copyright: <span>{apod?.copyright}</span></p>
                                         </div>
-                                        <div className="rightDetails" style={{backgroundImage: `url(${apod?.hdurl})`}}></div>
+                                        <div className="rightDetails" style={{backgroundImage: `url(${apod?.hdurl})`}} onClick={() => {handleImageViewer(apod)}}></div>
                                         <div className="download_share">
                                             <button type="button" onClick={handleShare}><i className="icofont-share"></i> Share</button>
                                         </div>
@@ -230,6 +304,25 @@ const HomePage = ({ apod }) => {
             <Sect4/>
             <Sect5/>
             <Footer bg={"#090208"}/>
+            <AnimatePresence mode='wait'>
+                {
+                    showImageViewer && (
+                        <motion.div initial="init" animate="finale" exit="exit" variants={parentVarSpec} className="imageViewer">
+                            <motion.div variants={scaleUpSpec} className="largeImageDisplayer" style={{backgroundImage: `url(${activeImageViewerData.content ? activeImageViewerData.content : activeImageViewerData?.hdurl || activeImageViewerData?.url})`}}>
+                                {/* <img src={activeImageViewerData.content} alt={activeImageViewerData.content.replace("/.jpg|.webp|.gif|.jpeg/gi", "")} /> */}
+                            </motion.div>
+                            <div className="largeImageDescription">
+                                <div className='textCntn'>
+                                    <h3>Description :</h3>
+                                    <p>{activeImageViewerData.content_description ? activeImageViewerData.content_description : activeImageViewerData?.explanation}</p>
+                                </div>
+                            </div>
+
+                            <motion.button variants={swipeSpec} type='button' className="closeBtnImgViewwer" onClick={() => {setShowImageViewer(prev => !prev)}}><i className="icofont-close-squared-alt"></i></motion.button>
+                        </motion.div>
+                    )
+                }
+            </AnimatePresence>
             
             <TransitionPage animateState={"initial"}/>
             <AnimatePresence mode="wait">

@@ -91,8 +91,8 @@ const Footer = ({ bg }) => {
                     <div className="footerDivider" style={{transform: `scaleX(${showPageLinks? "0.5" : "0.85"})`}}></div>
                     <div className="footerheightToggler" onClick={() => {setShowPageLinks(prev => !prev)}}><i className="icofont-stylish-down" style={{transform: `rotateZ(${showPageLinks ? "180deg" : "0deg"})`}}></i></div>
                     <div className="pageLinks">
-                        <Link className='unitLink' href={"/help"}><span className="coloredtile purple"></span><p>Help</p></Link>
-                        <Link className='unitLink' href={"/about"}><span className="coloredtile brown3"></span><p>About</p></Link>
+                        {/* <Link className='unitLink' href={"/help"}><span className="coloredtile purple"></span><p>Help</p></Link> */}
+                        <Link className='unitLink' href={"/about"}><span className="coloredtile purple"></span><p>About  QuadVerse</p></Link>
                         <Link className='unitLink' href={"/glossary"}><span className="coloredtile earthgreen"></span><p>Glossary</p></Link>
                         <Link className='unitLink' href={"/playground"}><span className="coloredtile brown2"></span><p>PlayGround</p></Link>
                         <p><i className="icofont-email"></i> <span>oladojaabdquadridamilola@gmail.com</span></p>
