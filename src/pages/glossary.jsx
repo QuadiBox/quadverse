@@ -7,6 +7,7 @@ import Navbar from '../components/navbar';
 import { useRouter } from 'next/router';
 import Footer from '../components/footer';
 import GlossSect1 from '../components/glossary/GlossSect1';
+import Head from 'next/head';
 
 const Glossary = () => {
   const router = useRouter();
@@ -91,6 +92,11 @@ const Glossary = () => {
 
   return (
     <div className='glossarysect'  onClick={(e) => {handleToggles( e, setShowOtherPageLinks); handleSearchBarToggles(e)}}>
+      <Head>
+        <title>Glossary | QuadVerse</title>
+        <meta property="og:title" content="Glossary | QuadVerse"/>
+        <meta property="og:description" content="Query, find, learn and enjoy 1600+ space-related terms with their meanings and relevance to space science and human space exploration."/>
+      </Head>
       <Navbar/>
       <motion.section initial="init" animate="finale" variants={parentVar} className={`solarSystem-Sect1`} style={{backgroundImage: `linear-gradient( 150deg, #130711e6, #130711b2, #1307115d), linear-gradient( to bottom, transparent, 80%,#241822ea), url(/glossary_1.jpg)`}}>
           <div className="heroSect-1">

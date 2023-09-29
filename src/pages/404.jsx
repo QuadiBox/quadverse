@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
 
 const PageNotFound = () => {
   const [millisec, setMilliSec] = useState(10);
@@ -30,6 +31,10 @@ const PageNotFound = () => {
 
   return (
     <section className='pageNotfound'>
+      <Head>
+        <title>404 - Lost In Space | QuadVerse</title>
+        <meta property="og:description" content="The page you searched for can not be found. Search for another page."/>
+      </Head>
       <svg style={{display: "none"}}>
           <defs>
           <filter id="noise">

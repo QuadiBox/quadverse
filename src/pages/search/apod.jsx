@@ -9,6 +9,7 @@ import Apod_Sect2 from '../../components/search/Apod_Sect2';
 import Footer from '../../components/footer';
 import { motion } from 'framer-motion';
 import Navbar from '../../components/navbar';
+import Head from 'next/head';
 
 
 
@@ -127,6 +128,11 @@ const Apod = () => {
 
     return (
         <motion.div initial="init" animate="finale" variants={grandparentvar} className='apodBasicPage' onClick={(e) => {handleToggles( e, setShowOtherPageLinks)}}>
+            <Head>
+                <title>Astronomy Picture of The Day | QuadVerse</title>
+                <meta property="og:title" content="Astronomy Picture of The Day | QuadVerse"/>
+                <meta property="og:description" content="You like HD space-themed pictures, check this out!!!. "/>
+            </Head>
             <Navbar/>
             <Sect1 apodDisplay={apodDisplay} setApodDisplay={setApodDisplay} LSData={LSData} setLSData={setLSData} setShowImageViewer={setShowImageViewer} setActiveImageViwerData={setActiveImageViwerData} />
             <Apod_Sect2 apodDisplay={apodDisplay} setApodDisplay={setApodDisplay} LSData={LSData} setLSData={setLSData}/>

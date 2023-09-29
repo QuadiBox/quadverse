@@ -7,6 +7,7 @@ import { AnimatePresence, motion  } from 'framer-motion';
 import Navbar from '../../components/navbar';
 import MiniFooter from '../../components/MiniFooter';
 import Star_questSect1 from '../../components/search/Star_questSect1';
+import Head from 'next/head';
 
 
 const Star_quest = () => {
@@ -65,6 +66,11 @@ const Star_quest = () => {
 
     return (
       <motion.div initial="init" animate="finale" variants={grandparentvar} className='planetQueryBasicPage' onClick={(e) => {handleToggles( e, setShowOtherPageLinks)}}>
+        <Head>
+            <title>Star Quest | QuadVerse</title>
+            <meta property="og:title" content="Star Quest | QuadVerse"/>
+            <meta property="og:description" content="Do you know there are estimated 100 trillion+ stars in the observable universe?. Want to know more about some of them?, check this out!!!."/>
+        </Head>
         <Navbar/>
         <div className="topQueryDisplay" style={{backgroundImage: "url(/star_quest.jpg)"}}>
           <div style={{overflow: "hidden"}}>

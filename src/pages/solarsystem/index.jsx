@@ -12,6 +12,7 @@ import MainSect from '../../components/solarSystem/MainSect';
 import Link from 'next/link';
 import ScrollButton from '../../components/ScrollButton';
 import SearchBoxInterface from '../../components/SearchBoxInterface';
+import Head from 'next/head';
 
 
 const Home = ({ data }) => {
@@ -40,7 +41,11 @@ const Home = ({ data }) => {
 
     return (
         <div className='solarsystemHomePage' onClick={(e) => {handleToggles( e, setShowOtherPageLinks)}}>
-            
+            <Head>
+                <title>Solar System | QuadVerse</title>
+                <meta property="og:title" content="Solar System | QuadVerse"/>
+                <meta property="og:description" content="Do you know Planet Earth is one of the eight planet in our Solar System?. To know more about our Solar System, check this out."/>
+            </Head>
             <Navbar/>
             <Sect1 data={data} setInview={setInview}/>
             <div className="navigationSelect">

@@ -83,7 +83,7 @@ export default function App({ Component, pageProps }) {
             <meta name="twitter:title" content="QuadVerse" />
             <meta name="twitter:card" content="/QuadVerse_Sc.jpg" />
             <meta name="twitter:description" content="A finely designed website for all space enthusiast and explorer to learn and find more about our solar system and the universe at large." />
-            <meta name="twitter:image" content="/QuadVerse_Sc.jpg" />
+            <meta name="twitter:image" content="/QuadVerse_sc2.png" />
             <meta property="og:title" content="QuadVerse"/>
             <meta property="og:description" content="A finely designed website for all space enthusiast and explorer to learn and find more about our solar system and the universe at large."/>
             <meta property="og:image" content="/IconVerse.png"/>

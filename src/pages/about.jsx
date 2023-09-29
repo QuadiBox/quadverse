@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import Footer from '../components/footer';
 import Link from 'next/link';
 import Earth from '../components/globe';
+import Head from 'next/head';
 
 const About = () => {
     const router = useRouter();
@@ -67,7 +68,12 @@ const About = () => {
 
   return (
     <main className='solarsystemHomePage about' onClick={(e) => {handleToggles( e, setShowOtherPageLinks)}}>
-        <Navbar></Navbar>
+      <Head>
+        <title>About QuadVerse | QuadVerse</title>
+        <meta property="og:title" content="About QuadVerse"/>
+        <meta property="og:description" content="Find out about the Quadverse. Everything you need to about the amazing space-education website - softwares, author and many more..."/>
+      </Head>
+      <Navbar></Navbar>
       <motion.section initial="init" animate="finale" variants={parentVar} className={`solarSystem-Sect1`} style={{backgroundImage: `linear-gradient( 150deg, #130711e6, #130711b2, #1307115d), linear-gradient( to bottom, transparent, 80%,#241822ea), url(/about_bg.jpg)`}}>
           <div className="heroSect-1">
               <div className="details">

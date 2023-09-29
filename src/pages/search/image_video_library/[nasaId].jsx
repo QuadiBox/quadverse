@@ -6,8 +6,8 @@ import { useRouter } from 'next/router';
 import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from '../../../components/navbar';
 import NasaIdSect1 from '../../../components/search/NasaIdSect1';
-import Link from 'next/link';
 import MiniFooter from '../../../components/MiniFooter';
+import Head from 'next/head';
 
 
 export default function NasaId ({ details }) {
@@ -55,6 +55,11 @@ export default function NasaId ({ details }) {
 
   return (
     <motion.div initial="init" animate="finale" variants={grandparentvar} className='image_library_detailMain' onClick={(e) => {handleToggles( e, setShowOtherPageLinks)}}>
+      <Head>
+        <title>{details.data[0].nasa_id} - Image & Video Libary | QuadVerse</title>
+        <meta property="og:title" content={`${details.data[0].nasa_id} - Image & Video Libary | QuadVerse`}/>
+        <meta property="og:description" content={`${details.data[0].nasa_id} - Image & Video Libary | QuadVerse`}/>
+      </Head>
       <Navbar/>
       <NasaIdSect1 details={details}/>
       <MiniFooter/>

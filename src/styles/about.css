@@ -326,7 +326,7 @@
         gap: 20px;
         position: relative;
         isolation: isolate;
-        min-height: 700px;
+        min-height: 670px;
         align-items: center;
     }
     
@@ -343,7 +343,7 @@
         align-items: center;
         justify-content: center;
         overflow: hidden;
-        top: 70%;
+        top: 75%;
         transform: translateY(-50%);
         right: -28%;
     }
@@ -351,8 +351,22 @@
 
 @media screen and (max-width: 395px) {
     .flexsection {
-        min-height: 730px;
+      min-height: 700px;
     }
+
+    .leftFlexSect {
+      position: absolute;
+      z-index: -1;
+      height: 400px;
+      width: 120vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      top: 77%;
+      transform: translateY(-50%);
+      right: -28%;
+  }
 }
 
 .globeLoader {

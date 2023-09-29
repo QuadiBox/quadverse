@@ -8,6 +8,7 @@ import Image_library_sect1 from '../../../components/search/image_library_sect1'
 import Footer from '../../../components/footer';
 import { motion } from 'framer-motion';
 import Navbar from '../../../components/navbar';
+import Head from 'next/head';
 
 const Image_video_library = () => {
   const ctx = useContext(themeContext);
@@ -48,6 +49,11 @@ const Image_video_library = () => {
 
   return (
     <motion.div initial="init" animate="finale" variants={grandparentvar} className='imageVideoBasicPage' onClick={(e) => {handleToggles( e, setShowOtherPageLinks)}}>
+      <Head>
+          <title>Image & Video Library | QuadVerse</title>
+          <meta property="og:title" content="Image & Video Library | QuadVerse"/>
+          <meta property="og:description" content="Want to know what if feels like having access to the largest space archive database in the world?, search anything here and get to surf through NASA's image, video and audio archives."/>
+      </Head>
       <Navbar/>
       <Image_library_sect1/>
       <Footer bg={"transparent"}/>

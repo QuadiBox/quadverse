@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import Navbar from '../../components/navbar';
 import MiniFooter from '../../components/MiniFooter';
 import Planet_querySect1 from '../../components/search/Planet_querySect1';
+import Head from 'next/head';
 
 
 const Planet_query = () => {
@@ -65,6 +66,11 @@ const Planet_query = () => {
 
     return (
         <motion.div initial="init" animate="finale" variants={grandparentvar} className='planetQueryBasicPage' onClick={(e) => {handleToggles( e, setShowOtherPageLinks)}}>
+            <Head>
+                <title>Planet Query | QuadVerse</title>
+                <meta property="og:title" content="Planet Query | QuadVerse"/>
+                <meta property="og:description" content="Do you know there are estimated 100 trillion+ planets in the observable universe?. Want to know more about some of them?, check this out!!!."/>
+            </Head>
             <Navbar/>
             <div className="topQueryDisplay" style={{backgroundImage: "url(/planetqueryHori.jpg)"}}>
                 <div style={{overflow: "hidden"}}>

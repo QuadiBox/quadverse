@@ -5,6 +5,7 @@ import TransitionPage from '../../components/transitionPage'
 import { useRouter } from 'next/router';
 import { AnimatePresence } from 'framer-motion';
 import Sect1 from '../../components/search/Sect1';
+import Head from 'next/head';
 
 const Index = () => {
   const [showExit, setShowExit] = useState(false);
@@ -29,6 +30,11 @@ const Index = () => {
 
   return (
     <div className='searchsBasicPage' onClick={(e) => {handleToggles( e, setShowOtherPageLinks)}}>
+      <Head>
+        <title>Search | QuadVerse</title>
+        <meta property="og:title" content="Search | QuadVerse"/>
+        <meta property="og:description" content="Check out all four amazing search realated pages and features on Quadverse - the best space-education website. "/>
+      </Head>
       <Sect1/>
       <TransitionPage animateState={"initial"}/>
       <AnimatePresence mode='wait'>

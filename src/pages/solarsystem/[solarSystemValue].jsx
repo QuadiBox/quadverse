@@ -12,6 +12,7 @@ import MainSect from '../../components/solarSystem/MainSect';
 import Link from 'next/link';
 import ScrollButton from '../../components/ScrollButton';
 import SearchBoxInterface from '../../components/SearchBoxInterface';
+import Head from 'next/head';
 
 
 
@@ -42,7 +43,11 @@ export default function SolarSystemValue ({ data, param }) {
 
     return (
         <div className='solarsystemHomePage' onClick={(e) => {handleToggles( e, setShowOtherPageLinks)}}>
-
+            <Head>
+                <title>{data?.baseText} | QuadVerse</title>
+                <meta property="og:title" content={`${data?.baseText} | QuadVerse`}/>
+                <meta property="og:description" content={`Get to read alot about the ${data?.baseText} indepth with the help of images and 3D visualization.`}/>
+            </Head>
             <Navbar/>
             <Sect1 data={data} setInview={setInview}/>
             <div className="navigationSelect">

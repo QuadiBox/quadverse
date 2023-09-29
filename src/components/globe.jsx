@@ -12,6 +12,11 @@ const Earth = () => {
         },
     };
     const [showLoader, setShowLoader] = useState(true);
+    const [windowWidth, setWindowWith] = useState(1200);
+
+    useEffect(() => {
+        setWindowWith(window.innerWidth);
+    }, []);
 
     const World = () => {
         const Globe = dynamic(import('react-globe.gl'), { ssr: false });
@@ -43,7 +48,7 @@ const Earth = () => {
                         globeImageUrl="/dark_map.jpg"
                         bumpImageUrl='/topo.png'
                         width={600}
-                        height={600}
+                        height={windowWidth <= 520 ? 500 : 600}
                         animateIn={true}
                         backgroundColor='#42273f00'
                         hexPolygonsData={countries.features}

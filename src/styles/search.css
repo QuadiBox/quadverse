@@ -96,8 +96,8 @@
 
 .sect1-search {
   width: 100%;
-  height: 100vh;
-  overflow: auto;
+  height: 100dvh;
+  overflow: hidden;
   background-image: linear-gradient(
       transparent,
       var(--bg2-opac02),
@@ -152,7 +152,6 @@
   border-top-color: #fdf5ff9f;
   border-bottom-color: #fdf5ff9f;
   transform-origin: center left;
-
 }
 
 .apodUnit {
@@ -271,6 +270,7 @@
   justify-content: center;
   padding: 12px 25px;
   border: 1px dashed var(--text-clr2);
+  color: var(--text-clr2);
   outline: none;
   font-size: 1.05em;
   width: max-content;
@@ -1877,6 +1877,33 @@
     align-items: center;
   }
 
+  .overlaySectUnit a{
+    border: 1px dashed #f9d9f97f;
+    outline: none;
+  }
+
+  .seearchCarousel > button.right{
+    border-right-color: #f9d9f97f;
+    border-top-color: #f9d9f97f;
+    border-bottom-color: #f9d9f97f;
+    border-left-color: #f9d9f96b;
+    transform-origin: center right;
+  }
+  .seearchCarousel > button.left{
+    border-left-color: #f9d9f96b;
+    border-top-color: #f9d9f97f;
+    border-bottom-color: #f9d9f97f;
+    border-right-color: #f9d9f97f;
+    transform-origin: center left;
+  }
+
+  .navigator-monitor {
+    height: 21px;
+    border-radius: 30px;
+    border: 1px dashed #f9d9f97f;
+  
+    transition: grid-template-columns 0.35s ease;
+  }
   .overlaySectUnit h1{
     text-align: center;
   }
