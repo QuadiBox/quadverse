@@ -351,6 +351,7 @@
     flex-direction: column;
     gap: 15px;
     align-items: center;
+    z-index: 50;
 }
 
 
@@ -674,6 +675,7 @@
     width: 100%;
     max-height: 800px;
     height: 100vh;
+    min-height: 720px;
     background-size: contain;
     background-position: 0% 50%;
     position: relative;
@@ -949,7 +951,7 @@
     overflow: hidden;
     flex-direction: column;
     max-height: 800px;
-    min-height: 620px;
+    min-height: 750px;
     height: 120vh;
     width: 100%;
     padding-inline: var(--gen-padding);
@@ -1329,7 +1331,7 @@
     }
 
     .apodDisplayer{
-        width: 80%;
+        width: 65%;
         border-radius: 10px;
     }
 
@@ -1367,9 +1369,6 @@
         background-image: linear-gradient(to bottom right, var(--bg2-opac07), 50%, var(--bg2-opac05)), url(/homeBg.jpg);
         background-size: cover;
         background-position: 5% 50%;
-        /* background-image: linear-gradient(to bottom, var(--bg1-opac05), var(--bg1-opac09), rgba(19, 0, 31, 0.951)), url(/homeBg2.jpg);
-        background-size: 100% 100%;
-        background-position: center bottom; */
     }
 
     .panOverlay{
@@ -1425,6 +1424,7 @@
     .sect1-home{
         width: 100%;
         height: max-content;
+        min-height: max-content;
         background-size: contain;
         background-position: 0% 50%;
         position: relative;
@@ -1752,8 +1752,8 @@
 
 .sect3-home{
     width: 100%;
-    min-height: 630px;
-    max-height: 800px;
+    min-height: 670px;
+    max-height: 790px;
     height: 138vh;
     position: relative;
     isolation: isolate;
@@ -1868,6 +1868,7 @@
     padding-inline: var(--gen-padding);
     width: 100%;
     max-height: 650px;
+    min-height: 600px;
     height: 100vh;
     position: relative;
     background: linear-gradient(to bottom, var(--bg1-opac02), 40%, var(--dark-clr1));
@@ -1894,6 +1895,24 @@
     gap: 20px;
     align-items: center;
     justify-content: center;
+}
+
+@media screen and (max-width: 1309px) {
+    .sect3-home{
+        width: 100%;
+        min-height: 670px;
+        max-height: 700px;
+        height: 118vh;
+    }
+
+    .articlesCntn{
+        width: 86%;
+        height: 100%;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 
